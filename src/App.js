@@ -4,6 +4,7 @@ import 'bulma/css/bulma.css';
 import  api from './utils/api' ;
 import  _ from 'lodash';
 import Hero from './components/Hero'
+import Loading from './components/Loading'
 
 
 class Student extends Component{
@@ -76,11 +77,14 @@ class App extends Component {
     }
   }
 
-    async componentWillMount(){
-      var res = await api.getStudents();
-      var resArray = _.map(_.toPairs(res.data), d => _.fromPairs([d]));
-      this.setState({ students: resArray });
-      console.log(resArray);
+    componentWillMount(){
+      api.getStudents().then((res) => {
+        var resArray = _.map(_.toPairs(res.data), d => _.fromPairs([d]));
+        this.setState({ students: resArray });
+        console.log(resArray);
+      }).catch((err) => {
+        console.log(err);
+      });
     }
     render() {
       return (
@@ -88,7 +92,7 @@ class App extends Component {
            <Hero />
           <div className="column center">
             {(this.state.students.length === 0)
-            ? null:
+            ? <Loading /> :
             <Student students={this.state.students} />
             }
           </div>

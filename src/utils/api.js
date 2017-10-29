@@ -11,8 +11,9 @@ module.exports = {
                 console.log(err)
             });
     },
-    createStudent: () => {  
-      return axios.post(BASE_URL+`/create`)
+    createStudent: (json) => {  
+        const dt = JSON.stringify(json)
+      return axios.post(BASE_URL+`/create`, dt)
         .then((res) => {
           return res;
         });
