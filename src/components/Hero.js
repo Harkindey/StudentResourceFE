@@ -1,23 +1,28 @@
-import React, {Component} from 'react'
-import Nav from './Nav'
+import  React, {Component} from 'react';
 
-class Hero extends Component {
-    render(){
+class  Hero extends Component {
+
+    render () {
         return(
-            <section className="hero is-primary">
-                <div className="hero-body">
-                    <div className="container">
-                        <h1 className="title">
-                                University Students
-                        </h1>
-                        <h2 className="subtitle">
+            <div>
+                <section className="hero is-primary">
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title">
+                                    University Students
+                            </h1>
+                            <h2 className="subtitle">
                                 Data
-                        </h2>
+                            </h2>
+                        </div>
                     </div>
-                </div>
-                <Nav />
-        </section>
+                    <button class="button" >
+                    <span>Create Student</span>
+                    </button>
+                </section>
+            </div>
         )
     }
 }
+
 export default Hero;
