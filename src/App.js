@@ -21,11 +21,12 @@ class Student extends Component{
 
 
    handleEdit (key, index, id) {
-     console.log(key,index, id);
-     return  (index === undefined) ? 
-        this.setState({ isOpen: !this.state.isOpen, key:'' , id : ''})
-       : this.setState({ isOpen: !this.state.isOpen, key: key, id : id })
-      
+        if (index === undefined) {
+            this.setState({ isOpen: !this.state.isOpen, key:'' , id : ''});
+            this.forceUpdate()
+        }else{
+            this.setState({ isOpen: !this.state.isOpen, key: key, id : id })
+        }
     }
 
   render(){
@@ -72,7 +73,9 @@ class Student extends Component{
                 </article> 
               </div>)
         })}
-        {(this.state.key !== '') ? <Form show={isOpen} onClose={handleEdit} data={this.state.key} id={this.state.id}/> : null}
+        {(this.state.key !== '') ? 
+        <Form show={isOpen} onClose={handleEdit} data={this.state.key} id={this.state.id}/> : 
+        null}
     </div>
     
     )

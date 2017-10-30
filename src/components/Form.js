@@ -28,14 +28,23 @@ class Form extends Component {
         event.preventDefault();
         if (this.props.data && this.props.id ){
             api.updateStudents(this.props.id, this.state).then(() => {
-                this.forceUpdate();
+                alert(`${this.state.name} is Updated`);
+                return true;
             }).catch((err) => {
                 console.log(err)
             })
         }else{
         api.createStudent(this.state).then(() => {
                 alert(`${this.state.name} is added`);
-                this.state = {}
+                this.setState({
+                    name: "",
+                    registration_number: "",
+                    current_part: "",
+                    degree_programme: "",
+                    department: "",
+                    faculty: "",
+                    hall_of_residence: ""
+                });
         }).catch((err) => {
             console.log(err)
         });
@@ -134,7 +143,7 @@ class Form extends Component {
                                     <select onChange={( event )=> {this.setState({ degree_programme : event.target.value })}}
                                             value={this.state.degree_programme}
                                             id="degree_programme"
-                                            required>
+                                            required >
                                         <option>Select dropdown</option>
                                         <option>B.sc</option>
                                         <option>M.sc</option>
