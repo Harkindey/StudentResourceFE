@@ -4,18 +4,26 @@ import api from '../utils/api'
 class Form extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name: "",
-            registration_number: "",
-            current_part: "",
-            degree_programme: "",
-            department: "",
-            faculty: "",
-            hall_of_residence: ""
-        };
 
         this.handleSubmit = this.handleSubmit.bind(this);
       }
+
+    componentWillMount() {
+        console.log(this.props)
+        if (this.props.data){
+            this.setState(this.props.data)
+        } else {
+            this.setState({
+                name: "",
+                registration_number: "",
+                current_part: "",
+                degree_programme: "",
+                department: "",
+                faculty: "",
+                hall_of_residence: ""
+            });
+        }
+    }
 
       handleSubmit(event){
         event.preventDefault();
@@ -46,7 +54,7 @@ class Form extends Component {
                                 id="name"
                                 className="input" 
                                 type="text" 
-                                placeholder="Text input"
+                                placeholder="Joe Dohn"
                                 onChange={( event )=> {this.setState({ name : event.target.value })}}
                                 value={this.state.name} 
                                 required
@@ -60,7 +68,7 @@ class Form extends Component {
                                 id="current_part"
                                 className="input" 
                                 type="text" 
-                                placeholder="Text input" 
+                                placeholder="E.G 1,2,3,..." 
                                 onChange={( event )=> {this.setState({ current_part : event.target.value })}}
                                 value={this.state.current_part}
                                 required
@@ -74,7 +82,7 @@ class Form extends Component {
                                 id="registration_number"
                                 className="input" 
                                 type="text" 
-                                placeholder="Text input"
+                                placeholder="BCH/1992/041"
                                 onChange={( event )=> {this.setState({ registration_number : event.target.value })}}
                                 value={this.state.registration_number} 
                                 required
@@ -84,12 +92,12 @@ class Form extends Component {
 
                         <div className="field">
                             <label className="label">Faculty</label>
-                            <div className="control has-icons-left has-icons-right">
+                            <div className="control">
                                 <input 
                                 id="faculty"
-                                className="input is-success" 
+                                className="input" 
                                 type="text" 
-                                placeholder="Text input" 
+                                placeholder="Technology" 
                                 onChange={( event )=> {this.setState({ faculty : event.target.value })}}
                                 value={this.state.faculty}
                                 required
@@ -99,12 +107,12 @@ class Form extends Component {
 
                         <div className="field">
                         <label className="label">Department</label>
-                        <div className="control has-icons-left has-icons-right">
+                        <div className="control">
                             <input 
                             id="department"
-                            className="input is-danger" 
+                            className="input" 
                             type="text" 
-                            placeholder="Email input" 
+                            placeholder="Yoruba Engineering" 
                             onChange={( event )=> {this.setState({ department : event.target.value })}}
                             value={this.state.department} 
                             required
@@ -128,7 +136,8 @@ class Form extends Component {
                                     </select>
                                     </div>
                                 </div>
-                            </div>    
+                            </div>
+                                
                             <div>
                                 <label className="label">Hall Of Residence</label>
                                 <div className="control">
