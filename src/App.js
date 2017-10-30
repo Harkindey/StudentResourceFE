@@ -68,16 +68,14 @@ class Student extends Component{
                       </div>
                         <div className="media-right">
                             <button className="delete" onClick={handleDelete.bind(null,id,key,index)}></button>
-                        </div>
-                        
+                        </div>                 
                 </article> 
               </div>)
         })}
         {(this.state.key !== '') ? 
         <Form show={isOpen} onClose={handleEdit} data={this.state.key} id={this.state.id}/> : 
         null}
-    </div>
-    
+    </div>  
     )
   }
   
@@ -93,7 +91,6 @@ class App extends Component {
   }
 
   toggleModal = () => {
-    console.log(this.state.isOpen)
   this.setState({
     isOpen: !this.state.isOpen
   });
@@ -103,7 +100,6 @@ class App extends Component {
       api.getStudents().then((res) => {
         var resArray = _.map(_.toPairs(res.data), d => _.fromPairs([d]));
         this.setState({ students: resArray });
-        console.log(resArray);
       }).catch((err) => {
         console.log(err);
       });
