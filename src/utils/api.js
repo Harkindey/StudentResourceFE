@@ -1,6 +1,6 @@
 var axios = require('axios');
 
-const BASE_URL = 'http://localhost:3333';
+const BASE_URL = 'https://adonis-app-zfgqhbbinn.now.sh';
 
 module.exports = {
     getStudents: () => {
