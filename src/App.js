@@ -14,19 +14,17 @@ class Student extends Component{
       this.state = {
         isOpen: false,
         key: '',
-
+        id: ''
       }
       this.handleEdit = this.handleEdit.bind(this);
     }
-    componentWillMount(){
-      console.log(this.props);
-    }    
 
-   handleEdit (key,index) {
-     console.log(key,index);
+
+   handleEdit (key, index, id) {
+     console.log(key,index, id);
      return  (index === undefined) ? 
-        this.setState({ isOpen: !this.state.isOpen, key:'' })
-       : this.setState({ isOpen: !this.state.isOpen, key: key })
+        this.setState({ isOpen: !this.state.isOpen, key:'' , id : ''})
+       : this.setState({ isOpen: !this.state.isOpen, key: key, id : id })
       
     }
 
@@ -64,7 +62,7 @@ class Student extends Component{
                             <img src="https://bulma.io/images/placeholders/128x128.png" alt="hey"/>
                         </figure>
                         <div className="column">
-                        <button className="button is-primary" onClick={handleEdit.bind(null,key,index)}>Edit</button>
+                        <button className="button is-primary" onClick={handleEdit.bind(null,key,index,id)}>Edit</button>
                         </div>
                       </div>
                         <div className="media-right">
@@ -74,7 +72,7 @@ class Student extends Component{
                 </article> 
               </div>)
         })}
-        {(this.state.key !== '') ? <Form show={isOpen} onClose={handleEdit} data={this.state.key} /> : null}
+        {(this.state.key !== '') ? <Form show={isOpen} onClose={handleEdit} data={this.state.key} id={this.state.id}/> : null}
     </div>
     
     )

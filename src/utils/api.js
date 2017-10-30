@@ -13,13 +13,15 @@ module.exports = {
     },
     createStudent: (json) => {  
         const dt = JSON.stringify(json)
+        console.log(dt);
       return axios.post(BASE_URL+`/create`, dt)
         .then((res) => {
           return res;
         });
     },
-    updatestudents:(id) => {
-        return axios.put(BASE_URL+`/update/${id}`)
+    updateStudents:(id, json) => {
+        const dt = JSON.stringify(json)
+        return axios.put(BASE_URL+`/update/${id}`, dt)
         .then((res) => {
             return res
         })

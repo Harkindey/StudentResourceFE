@@ -9,7 +9,6 @@ class Form extends Component {
       }
 
     componentWillMount() {
-        console.log(this.props)
         if (this.props.data){
             this.setState(this.props.data)
         } else {
@@ -27,13 +26,20 @@ class Form extends Component {
 
       handleSubmit(event){
         event.preventDefault();
-        console.log(this);
+        if (this.props.data && this.props.id ){
+            api.updateStudents(this.props.id, this.state).then(() => {
+                this.forceUpdate();
+            }).catch((err) => {
+                console.log(err)
+            })
+        }else{
         api.createStudent(this.state).then(() => {
                 alert(`${this.state.name} is added`);
                 this.state = {}
         }).catch((err) => {
             console.log(err)
         });
+    }
     }
 
     render() {
@@ -46,7 +52,7 @@ class Form extends Component {
                 <div className="modal-background" onClick={this.props.onClose}></div>
                     <div className="modal-content">
                     <div className="modal-card-body">
-                    <form  onSubmit={this.handleSubmit}>
+                    <form  onSubmit={this.handleSubmit.bind()}>
                         <div className="field">
                             <label className="label">Name</label>
                             <div className="control">
